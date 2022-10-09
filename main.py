@@ -129,12 +129,13 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('get_all_posts'))
 
 
-@app.route("/post/<int:post_id>",methods=["GET","POST"])
+@app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
     requested_post = BlogPost.query.get(post_id)
     comment_form = CommentForm()
